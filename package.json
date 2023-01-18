@@ -1,0 +1,66 @@
+{
+    "name": "limitlex-cucumber-playwright",
+    "version": "0.1.0",
+    "description": "Playwright framework for Limitlex test in Cucumber",
+    "main": "index.js",
+    "scripts": {
+        "api": "DEBUG=pw:api cucumber-js",
+        "build": "rimraf build && npm run format && npm run lint && tsc && npm run cucumber-check",
+        "cucumber-check": "cucumber-js features/**/*.feature --dry-run --require env/set-environment-variables.ts --require world/custom-world.ts --require step-definitions/**/*.ts --require hooks/**/*.ts  --require-module ts-node/register --format-options \"{\\\"snippetInterface\\\": \\\"async-await\\\"}\" --format summary --format progress --format progress-bar  --publish-quiet",
+        "debug": "PWDEBUG=1 DEBUG=pw:api cucumber-js",
+        "video": "PWVIDEO=1 cucumber-js",
+        "eslint-fix": "eslint ./ --ext .js,.ts,.tsx --fix",
+        "eslint-init": "eslint --init",
+        "format": "prettier --write \"**/*.{ts,tsx,css,html}\" ",
+        "lint": "eslint ./ --ext .js,.ts,.tsx --format visualstudio --no-color --report-unused-disable-directives",
+        "only": "npm run cucumber -- --tags @only",
+        "report": "open reports/report.html",
+        "snippets": "cucumber-js features/**/*.feature --dry-run --format snippets",
+        "steps-usage": "cucumber-js features/**/*.feature --dry-run",
+        "all": "cucumber-js features/**/*.feature",
+        "test": "cucumber-js",
+        "limitlex": "cucumber-js features/**/limitlex.feature"
+    },
+    "engines": {
+        "node": ">=14"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tallyb/cucumber7-playwright.git"
+    },
+    "author": "Henri d'Orgeval",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tallyb/cucumber-playwright/issues"
+    },
+    "homepage": "https://github.com/tallyb/cucumber-playwright#readme",
+    "devDependencies": {
+        "@cucumber/cucumber": "^7.2.1",
+        "@types/expect": "24.3.0",
+        "@types/lodash": "4.14.169",
+        "@types/node": "15.3.0",
+        "@typescript-eslint/eslint-plugin": "4.24.0",
+        "@typescript-eslint/parser": "4.24.0",
+        "cucumber-html-reporter": "^5.4.0",
+        "eslint": "7.26.0",
+        "eslint-config-prettier": "8.3.0",
+        "eslint-plugin-import": "2.23.2",
+        "eslint-plugin-prettier": "3.4.0",
+        "eslint-plugin-react": "^7.23.2",
+        "expect": "26.6.2",
+        "open": "^8.0.9",
+        "playwright": "^1.29.2",
+        "prettier": "2.3.0",
+        "standard-version": "^9.3.0",
+        "ts-node": "^9.1.1",
+        "typescript": "4.2.4"
+    },
+    "dependencies": {
+        "@cucumber/html-formatter": "14.0.0",
+        "@cucumber/pretty-formatter": "1.0.0-alpha.0",
+        "@playwright/test": "^1.29.2",
+        "cucumber-console-formatter": "1.0.0",
+        "cucumber-pretty": "^6.0.0",
+        "rimraf": "3.0.2"
+    }
+}
