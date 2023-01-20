@@ -1,17 +1,16 @@
 import { BasePage } from "./base-page";
-export class DashboardPage extends BasePage {
-    public get elements() {
-        return {
-            widgetPageButton: "Widget",
-        };
-    }
+import config from "../../config";
 
+const EL_SELECTORS = {
+    widgetPageButton: "Widget",
+};
+export class DashboardPage extends BasePage {
     public async openWidgetPage(): Promise<void> {
         await this.page
-            .getByRole("link", { name: this.elements.widgetPageButton })
+            .getByRole("link", { name: EL_SELECTORS.widgetPageButton })
             .click();
         await this.expect(this.page).toHaveURL(
-            "https://payment-gateway-stage.dev.limitlex.io//payWidget.create"
+            config.baseUrl + "payWidget.create"
         );
     }
 }

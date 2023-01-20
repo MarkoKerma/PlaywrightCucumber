@@ -1,6 +1,6 @@
 import config from "../../config";
 import { Page, BrowserContext } from "playwright";
-import { expect } from "@playwright/test";
+import { expect, Expect, Response } from "@playwright/test";
 import { join } from "path";
 
 export class BasePage {
@@ -12,16 +12,12 @@ export class BasePage {
         this.context = context;
     }
 
-    public get expect() {
+    public get expect(): Expect {
         return expect;
     }
 
-    public goto(optionalUrl?: string): Promise<any> {
-        const pageToGoTo = optionalUrl
-            ? (config.baseUrl += optionalUrl)
-            : config.baseUrl;
-
-        return this.page.goto(pageToGoTo);
+    public goto(route = ""): Promise<null | Response> {
+        return this.page.goto(join(config.baseUrl, route));
     }
 
     public screenshot(name: string): Promise<Buffer> | undefined {

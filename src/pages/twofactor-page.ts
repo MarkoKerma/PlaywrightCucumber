@@ -1,19 +1,18 @@
 import { BasePage } from "./base-page";
-export class TwoFactorPage extends BasePage {
-    public get elements() {
-        return {
-            codeInput: "input[name=code]",
-            passwordInput: "input[name=password]",
-            verifyButton: "input[value=VERIFY]",
-        };
-    }
+import config from "../../config";
 
+const EL_SELECTORS = {
+    codeInput: "input[name=code]",
+    passwordInput: "input[name=password]",
+    verifyButton: "input[value=VERIFY]",
+};
+export class TwoFactorPage extends BasePage {
     public async addTwoFactorCode(): Promise<void> {
-        await this.page.waitForSelector(this.elements.codeInput);
-        await this.page.locator(this.elements.codeInput).type("222222");
-        await this.page.locator(this.elements.verifyButton).click();
-        await this.expect(this.page).toHaveURL(
-            "https://payment-gateway-stage.dev.limitlex.io//"
-        );
+        await this.page.waitForSelector(EL_SELECTORS.codeInput);
+        await this.page
+            .locator(EL_SELECTORS.codeInput)
+            .type(config.twoFactorCode);
+        await this.page.locator(EL_SELECTORS.verifyButton).click();
+        await this.expect(this.page).toHaveURL(config.baseUrl);
     }
 }

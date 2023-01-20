@@ -85,8 +85,28 @@ In [cucumber.js](cucumber.js) file, modify the options.
 ## To view the html report of the last run
 
 -   run the command `npm run report`.
+## Set Playwright tests
+- npm install
+
+## Run tests
+- npx run limitlex
 
 ## Debugging cucumber limitlex tests
-
 -   $env:PWDEBUG=1
 -   npm run limitlex
+
+## Test Case
+Feature: Limitlex
+
+  Scenario: Widget code
+    Given I login to Limitlex Forum Pay
+    And open Widgets menu
+    When I input Order Amount "33"
+    And copy widget HTML
+    And open Cron Jobs page
+    And start Cron Jobs
+    And use Widget Code in browser
+    And confirm I am not a robot
+    Then widget will open with correct amount "33"
+
+

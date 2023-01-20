@@ -7,6 +7,10 @@ const config = {
     defaultTimeout: 60 * 1000, // milliseconds
     runHeadless: true,
     runSlow: 0, // milliseconds
+    cronsUrl: "",
+    username: "marko.petricevic@servalit.com",
+    password: "Test12345!",
+    twoFactorCode: "222222",
 };
 
 export default config;
