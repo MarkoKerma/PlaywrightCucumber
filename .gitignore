@@ -70,3 +70,6 @@ reports/*.json
 build
 dist/
 docs/
+
+screenshots/*
+reports/*
