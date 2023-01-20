@@ -15,7 +15,7 @@ export class WidgetPage extends BasePage {
         //replace this wait
         await this.page.waitForTimeout(3000);
         const input_value = await this.page
-            .locator("#widget_html")
+            .locator(EL_SELECTORS.widgetHTMLCode)
             .inputValue();
 
         this.expect(input_value).toContain("order_amount=" + amountOfOrder);

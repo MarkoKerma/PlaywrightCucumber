@@ -10,6 +10,8 @@ const EL_SELECTORS = {
     rememberMeCheckBox: "#stay_loggedin",
     loginButton: 'input[value="LOG IN"]',
 };
+const towFactorUrl = "login_step_two?";
+
 export class LoginPage extends BasePage {
     public async goToLoginPage(): Promise<
         ElementHandle<HTMLElement | SVGElement>> {
@@ -25,8 +27,6 @@ export class LoginPage extends BasePage {
         await this.page.locator(EL_SELECTORS.recaptchaCheckBox).click();
         await this.page.locator(EL_SELECTORS.rememberMeCheckBox).click();
         await this.page.locator(EL_SELECTORS.loginButton).click();
-        await this.expect(this.page).toHaveURL(
-            config.baseUrl + "login_step_two?"
-        );
+        await this.expect(this.page).toHaveURL(config.baseUrl + towFactorUrl);
     }
 }
