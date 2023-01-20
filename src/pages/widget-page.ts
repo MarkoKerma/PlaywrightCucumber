@@ -14,10 +14,11 @@ export class WidgetPage extends BasePage {
         await this.page.locator(EL_SELECTORS.applyWidgetChangesButton).click();
         //replace this wait
         await this.page.waitForTimeout(3000);
+        const input_value = await this.page
+            .locator("#widget_html")
+            .inputValue();
 
-        await this.expect(
-            await this.page.locator(EL_SELECTORS.widgetHTMLCode).inputValue()
-        ).toContain("order_amount=" + amountOfOrder);
+        this.expect(input_value).toContain("order_amount=" + amountOfOrder);
     }
     public async copyAndReplaceWidgetCode(): Promise<void> {
         const widgetHTML = String(
