@@ -11,6 +11,8 @@ const config = {
     username: "marko.petricevic@servalit.com",
     password: "Test12345!",
     twoFactorCode: "222222",
+    cronJobsUrl:
+        "https://payment-gateway-stage-cron.dev.limitlex.io/htdocs/cron/",
 };
 
 export default config;
