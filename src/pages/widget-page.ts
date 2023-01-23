@@ -6,6 +6,10 @@ const EL_SELECTORS = {
     widgetHTMLCode: "#widget_html",
 };
 export class WidgetPage extends BasePage {
+    /**
+     * Adds value to order amount filed in widget code creation form
+     * @param amountOfOrder -value to add in input element
+     */
     public async addFIATAmountForWidget(amountOfOrder: string): Promise<void> {
         await this.page.locator(EL_SELECTORS.orderAmountInput).fill("");
         await this.page
@@ -20,6 +24,10 @@ export class WidgetPage extends BasePage {
 
         this.expect(input_value).toContain("order_amount=" + amountOfOrder);
     }
+    /**
+     * Copies widget code and save it as widgetHTMLCode for later use
+     * and saves it in widgetHTMLCode
+     */
     public async copyWidgetCode(): Promise<void> {
         const widgetHTML = String(
             await this.page.locator(EL_SELECTORS.widgetHTMLCode).inputValue()
@@ -27,6 +35,9 @@ export class WidgetPage extends BasePage {
         this.widgetHTMLCode = widgetHTML;
     }
 
+    /**
+     * Replaces html code on page with widget code saved as widgetHTMLCode
+     */
     public async replaceWidgetCode(): Promise<void> {
         const codeHTML = String(this.widgetHTMLCode);
         await this.page.setContent(codeHTML);

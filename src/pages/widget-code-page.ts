@@ -6,6 +6,9 @@ const EL_SELECTORS = {
     iframeLocator: "iframe",
 };
 export class WidgetCodePage extends BasePage {
+    /**
+     * Clicks "I am not robot" checkbox on widget code
+     */
     public async clickRecaptchaCheckoutBox(): Promise<void> {
         await this.expect(
             this.page
@@ -17,7 +20,10 @@ export class WidgetCodePage extends BasePage {
             .locator(EL_SELECTORS.recaptchaCheckoutBox)
             .click();
     }
-
+    /**
+     * Checks total amount value of FIAT in widget code
+     * @param amountOfOrder - amount added in widget code
+     */
     public async checkFIATAmountInWidget(amountOfOrder: string): Promise<void> {
         await this.expect(
             this.page

@@ -6,6 +6,10 @@ const EL_SELECTORS = {
 };
 const widgetPageUrl = config.baseUrl + "payWidget.create";
 export class DashboardPage extends BasePage {
+    /**
+     * Selects Widget section from Header menu
+     * waits for url to be url of widgets page
+     */
     public async openWidgetPage(): Promise<void> {
         await this.page
             .getByRole("link", { name: EL_SELECTORS.widgetPageButton })

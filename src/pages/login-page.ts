@@ -13,12 +13,18 @@ const EL_SELECTORS = {
 const towFactorUrl = config.baseUrl + "login_step_two?";
 
 export class LoginPage extends BasePage {
+    /**
+     * Opens Login Page on ForumPay App
+     */
     public async goToLoginPage(): Promise<
         ElementHandle<HTMLElement | SVGElement>> {
         await this.goto("/login");
         return this.page.waitForSelector(EL_SELECTORS.emailInput);
     }
 
+    /**
+     *  Logins user to the ForumPay App
+     */
     public async loginToAPP(): Promise<void> {
         await this.page.locator(EL_SELECTORS.emailInput).type(config.username);
         await this.page

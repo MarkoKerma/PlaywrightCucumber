@@ -8,16 +8,26 @@ const EL_SELECTORS = {
 };
 const cronsUrl = config.cronJobsUrl;
 export class CronJobsPage extends BasePage {
+    /**
+     * Opens CronJobs page on ForumPay
+     */
     public async openCronJobsPage(): Promise<
         ElementHandle<HTMLElement | SVGElement>> {
         await this.page.goto(cronsUrl);
         return this.page.waitForSelector(EL_SELECTORS.execAllButton);
     }
 
+    /**
+     *  Executes all CronJobs on CronJobs Page
+     */
     public async execAllCrons(): Promise<void> {
         await this.page.locator(EL_SELECTORS.execAllButton).click();
     }
 
+    /**
+     * Waits for all CronJobs to be executed
+     * WIP - need to replace implicit timeout
+     */
     public async waitCronsToFinish(): Promise<void> {
         await this.page.waitForTimeout(5000);
         // const fatherElement = await this.page.getByText(
