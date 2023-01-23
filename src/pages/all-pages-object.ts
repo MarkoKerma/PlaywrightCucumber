@@ -4,6 +4,7 @@ import { TwoFactorPage } from "./twofactor-page";
 import { DashboardPage } from "./dashboard-page";
 import { WidgetPage } from "./widget-page";
 import { WidgetCodePage } from "./widget-code-page";
+import { CronJobsPage } from "./cronjobs-page";
 import { Page, BrowserContext } from "playwright";
 
 export class AllPagesObject {
@@ -13,6 +14,7 @@ export class AllPagesObject {
     dashboardPage: DashboardPage;
     widgetPage: WidgetPage;
     widgetCodePage: WidgetCodePage;
+    cronJobsPage: CronJobsPage;
 
     constructor(public page: Page, public context: BrowserContext) {
         this.basePage = new BasePage(page, context);
@@ -21,5 +23,6 @@ export class AllPagesObject {
         this.dashboardPage = new DashboardPage(page, context);
         this.widgetPage = new WidgetPage(page, context);
         this.widgetCodePage = new WidgetCodePage(page, context);
+        this.cronJobsPage = new CronJobsPage(page, context);
     }
 }

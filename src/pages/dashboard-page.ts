@@ -4,12 +4,12 @@ import config from "../../config";
 const EL_SELECTORS = {
     widgetPageButton: "Widget",
 };
-const widgetPageUrl = "payWidget.create";
+const widgetPageUrl = config.baseUrl + "payWidget.create";
 export class DashboardPage extends BasePage {
     public async openWidgetPage(): Promise<void> {
         await this.page
             .getByRole("link", { name: EL_SELECTORS.widgetPageButton })
             .click();
-        await this.expect(this.page).toHaveURL(config.baseUrl + widgetPageUrl);
+        await this.expect(this.page).toHaveURL(widgetPageUrl);
     }
 }

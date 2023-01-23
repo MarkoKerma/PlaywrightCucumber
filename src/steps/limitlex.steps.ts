@@ -18,12 +18,21 @@ When(
     }
 );
 
-When("copy widget HTML", async function () {
-    // const widgetHTML = String(await page.locator('#widget_html').inputValue());
+When("copy widget HTML", async function (this: ICustomWorld) {
+    await this.pagesObj?.widgetPage.copyWidgetCode();
+});
+
+When("open Cron Jobs page", async function (this: ICustomWorld) {
+    await this.pagesObj?.cronJobsPage.openCronJobsPage();
+});
+
+When("start Cron Jobs", async function (this: ICustomWorld) {
+    await this.pagesObj?.cronJobsPage.execAllCrons();
+    await this.pagesObj?.cronJobsPage.waitCronsToFinish();
 });
 
 When("use Widget Code in browser", async function (this: ICustomWorld) {
-    await this.pagesObj?.widgetPage.copyAndReplaceWidgetCode();
+    await this.pagesObj?.widgetPage.replaceWidgetCode();
 });
 
 When("confirm I am not a robot", async function (this: ICustomWorld) {

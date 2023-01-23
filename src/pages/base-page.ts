@@ -6,10 +6,12 @@ import { join } from "path";
 export class BasePage {
     page: Page;
     context: BrowserContext;
+    widgetHTMLCode?: string;
 
-    constructor(page: Page, context: BrowserContext) {
+    constructor(page: Page, context: BrowserContext, widgetHTMLCode?: string) {
         this.page = page;
         this.context = context;
+        this.widgetHTMLCode = widgetHTMLCode;
     }
 
     public get expect(): Expect {

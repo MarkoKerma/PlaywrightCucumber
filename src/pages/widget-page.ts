@@ -20,10 +20,15 @@ export class WidgetPage extends BasePage {
 
         this.expect(input_value).toContain("order_amount=" + amountOfOrder);
     }
-    public async copyAndReplaceWidgetCode(): Promise<void> {
+    public async copyWidgetCode(): Promise<void> {
         const widgetHTML = String(
             await this.page.locator(EL_SELECTORS.widgetHTMLCode).inputValue()
         );
-        await this.page.setContent(widgetHTML);
+        this.widgetHTMLCode = widgetHTML;
+    }
+
+    public async replaceWidgetCode(): Promise<void> {
+        const codeHTML = String(this.widgetHTMLCode);
+        await this.page.setContent(codeHTML);
     }
 }
